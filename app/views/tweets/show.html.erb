@@ -1,0 +1,9 @@
+<p><%= link_to @tweet.account, @tweet.account %></p>
+
+<blockquote class="blockquote">
+  <%= @tweet.text %>
+</blockquote>
+
+<%= link_to 'See on twitter', @tweet.url, target: :_blank, class: 'btn btn-primary btn-sm' %>
+
+<%#= link_to 'Edit', edit_tweet_path(@tweet) %>

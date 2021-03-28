@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Accounts</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Username</th>
+      <th>Country</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @accounts.each do |account| %>
+      <tr>
+        <td><%= link_to account, account %></td>
+        <td><%= account.username %></td>
+        <td><%= account.country %></td>
+        <td>
+          <%= link_to 'Edit', edit_account_path(account), class: 'btn btn-primary btn-sm' %>
+          <%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Account', new_account_path %>
