@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootstrap'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'simple_form'
+gem 'angular_rails_csrf'
 gem 'country_select'
 gem 'twitter'
 gem 'figaro'

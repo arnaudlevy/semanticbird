@@ -1,0 +1,14 @@
+<h1><%= @theme %></h1>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @theme.parent_id %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @theme.color %>
+</p>
+
+<%= link_to 'Edit', edit_theme_path(@theme) %> |
+<%= link_to 'Back', themes_path %>

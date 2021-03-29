@@ -6,6 +6,7 @@ class Lexem
     clean_text.gsub! '!', ' '
     clean_text.gsub! '?', ' '
     clean_text.gsub! 'RT', ' '
+    clean_text.gsub! ' €', '€'
     clean_text.gsub! ':', ' '
     clean_text.gsub! ' | ', ' '
     clean_text.gsub! '  ', ' '

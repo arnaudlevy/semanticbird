@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Tweets</h1>
 
 <table class="table">
@@ -15,7 +13,7 @@
   <tbody>
     <% @tweets.each do |tweet| %>
       <tr>
-        <td><%= tweet.account_id %></td>
+        <td><%= tweet.account %></td>
         <td><%= tweet.url %></td>
         <td><%= tweet.text %></td>
         <td><%= link_to 'Show', tweet %></td>
