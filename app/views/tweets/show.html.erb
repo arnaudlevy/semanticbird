@@ -6,4 +6,31 @@
 
 <%= link_to 'See on twitter', @tweet.url, target: :_blank, class: 'btn btn-primary btn-sm' %>
 
-<%#= link_to 'Edit', edit_tweet_path(@tweet) %>
+<script type="text/javascript">
+  var app = angular.module('Lexems', []);
+  app.controller('LexemsController', function LexemsController($scope, $http) {
+    $http.get('<%= tweet_path(format: :json) %>')
+      .then(function (event) {
+        $scope.lexems = event.data.lexems;
+      }, function (error) {
+      });
+    $scope.select = function (lexem) {
+      $scope.lexemSelected = lexem;
+    }
+  });
+</script>
+
+<div class="lexems mt-5" ng-app="Lexems" ng-controller="LexemsController">
+  <div  class="lexems__lexem"
+        ng-repeat="lexem in lexems"
+        ng-click="select(lexem)"
+        ng-class="{ 'lexems__lexem--selected': lexem === lexemSelected }">
+    <span class="lexems__lexem__index">{{ lexem.index }}</span>
+    <span class="lexems__lexem__value">{{ lexem.value }}</span>
+    <div class="lexems__lexem__themes">
+    </div>
+  </div>
+  <div class="">
+    {{ lexemSelected.value }}
+  </div>
+</div>

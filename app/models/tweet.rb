@@ -9,6 +9,10 @@ class Tweet < ApplicationRecord
     self.save
   end
 
+  def lexems
+    Lexem.list text
+  end
+
   def to_s
     "#{text}"
   end
