@@ -1,3 +1,5 @@
+<%= line_chart @theme.tweets.group_by_day(:created_at, last: 30).count %>
+
 <h1><%= @theme %></h1>
 
 <%= link_to 'Edit', edit_theme_path(@theme), class: button_classes %>

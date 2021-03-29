@@ -3,13 +3,20 @@
     <div class="col-md-4">
       <div class="card mb-3">
         <div class="card-header">
+          <div class="small text-muted float-end">
+            <%= l tweet.created_at, format: :long %>
+          </div>
           <%= link_to tweet.account, tweet.account %>
         </div>
         <div class="card-body">
           <p><%= tweet %></p>
-          <div class="small text-muted">
-            <%= l tweet.created_at, format: :long %>
-          </div>
+          <ul class="list-inline">
+            <% tweet.themes.each do |theme| %>
+            <li class="list-inline-item">
+              <%= link_to theme, theme, class: 'btn btn-secondary btn-sm mb-3' %>
+            </li>
+            <% end %>
+          </ul>
         </div>
         <div class="card-footer">
           <%= link_to 'Analyze', tweet, class: 'btn btn-primary btn-sm' %>
