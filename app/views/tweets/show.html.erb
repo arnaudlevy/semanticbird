@@ -52,7 +52,7 @@
   <div class="row">
     <div class="col-md-8">
       <blockquote class="blockquote">{{ tweet.text }}</blockquote>
-      <p><a ng-href="tweet.account.path">{{ tweet.account.name }}</a></p>
+      <p><a ng-href="{{ tweet.account.path }}">{{ tweet.account.name }}</a></p>
       <a ng-href="{{ tweet.url }}" class="btn btn-primary btn-sm" target="_blank" rel="noreferrer">See on twitter</a>
     </div>
     <div class="col-md-4">
