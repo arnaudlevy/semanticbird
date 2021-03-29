@@ -5,20 +5,16 @@
     <tr>
       <th>Name</th>
       <th>Parent</th>
-      <th>Color</th>
-      <th colspan="3"></th>
+      <th>Tweets</th>
     </tr>
   </thead>
 
   <tbody>
     <% @themes.each do |theme| %>
       <tr>
-        <td><%= theme.name %></td>
-        <td><%= theme.parent_id %></td>
-        <td><%= theme.color %></td>
-        <td><%= link_to 'Show', theme %></td>
-        <td><%= link_to 'Edit', edit_theme_path(theme) %></td>
-        <td><%= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to theme, theme %></td>
+        <td><%= link_to theme.parent, theme.parent if theme.parent %></td>
+        <td><%= theme.tweets.count %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Theme', new_theme_path %>
+<%= link_to 'New Theme', new_theme_path, class: button_classes %>
