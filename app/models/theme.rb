@@ -3,11 +3,19 @@ class Theme < ApplicationRecord
   has_many :children, class_name: 'Theme', foreign_key: :parent_id, inverse_of: :parent
   has_and_belongs_to_many :tweets
 
+  scope :root, -> { where(parent: nil) }
   scope :with_lexem, -> (lexem) { where('lexems like ?', "%|#{lexem.value}|%") }
+  default_scope { order(:name)}
 
   def toggle(lexem)
     contains?(lexem)  ? remove!(lexem)
                       : add!(lexem)
+  end
+
+  def ancestors_and_self
+    list = [self]
+    list = parent.ancestors_and_self.concat list if parent
+    list
   end
 
   def to_s

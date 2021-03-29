@@ -1,34 +1,11 @@
 <h1><%= @account %></h1>
 
 <p>
-  <strong>Identifier:</strong>
-  <%= @account.username %>
-</p>
-
-<p>
   <strong>Country:</strong>
   <%= @account.country %>
 </p>
 
-<%= link_to 'Edit', edit_account_path(@account) %>
+<%= link_to 'Edit', edit_account_path(@account), class: button_classes %>
+<%= link_to 'Sync', sync_account_path(@account), method: :post, class: button_classes %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Text</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @account.tweets.each do |tweet| %>
-      <tr>
-        <td><%= tweet %></td>
-        <td width="200">
-          <%= link_to 'Analyze', tweet, class: 'btn btn-primary btn-sm' %>
-          <%= link_to 'See on twitter', tweet.url, target: :_blank, class: 'btn btn-primary btn-sm' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'tweets/list', tweets: @account.tweets %>

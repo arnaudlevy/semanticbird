@@ -27,9 +27,7 @@
             <%= render_breadcrumbs builder: BreadcrumbBuilder %>
           </ol>
         </nav>
-        <% if notice %>
-          <p id="notice"><%= notice %></p>
-        <% end %>
+        <%= render 'toastr' %>
         <%= yield %>
       </main>
       <footer class="text-muted small mt-5">

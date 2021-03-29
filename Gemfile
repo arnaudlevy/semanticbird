@@ -8,7 +8,7 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 gem 'jbuilder', '~> 2.7'
-gem 'bootstrap'
+gem 'bootstrap', '~> 5.0.0.beta2'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'simple_form'
 gem 'angular_rails_csrf'
@@ -16,6 +16,7 @@ gem 'country_select'
 gem 'twitter'
 gem 'figaro'
 gem 'breadcrumbs_on_rails'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :set_account, only: %i[ show edit update destroy ]
+  before_action :set_account, only: %i[ show sync edit update destroy ]
 
   add_breadcrumb 'Accounts', :accounts_path
 
@@ -10,8 +10,12 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1 or /accounts/1.json
   def show
-    @account.get_recent_tweets!
     add_breadcrumb @account
+  end
+
+  def sync
+    @account.get_recent_tweets!
+    redirect_to @account, notice: 'Synced tweets'
   end
 
   # GET /accounts/new

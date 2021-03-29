@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     end
   end
   resources :tweets
-  resources :accounts
+  resources :accounts do
+    member do
+      post :sync
+    end
+  end
   root to: 'accounts#index'
 end

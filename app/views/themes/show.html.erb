@@ -1,32 +1,28 @@
 <h1><%= @theme %></h1>
 
-<p>
-  <strong>Parent:</strong>
-  <%= @theme.parent_id %>
-</p>
+<%= link_to 'Edit', edit_theme_path(@theme), class: button_classes %>
 
-<p>
-  <strong>Color:</strong>
-  <%= @theme.color %>
-</p>
-
-<%= link_to 'Edit', edit_theme_path(@theme) %>
-
-<h2>Tweets</h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Account</th>
-      <th>Text</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @theme.tweets.each do |tweet| %>
+<% if @theme.children.any? %>
+  <h2 class="mt-5">Child themes</h2>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= link_to tweet.account, tweet.account %></td>
-        <td><%= link_to tweet.text, tweet %></td>
+        <th>Name</th>
+        <th>Tweets</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @theme.children.each do |theme| %>
+        <tr>
+          <td><%= link_to theme, theme %></td>
+          <td><%= theme.tweets.count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<% if @theme.tweets.any? %>
+  <h2 class="mt-5">Tweets</h2>
+  <%= render 'tweets/list', tweets: @theme.tweets %>
+<% end %>

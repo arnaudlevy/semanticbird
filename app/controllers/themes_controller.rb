@@ -5,12 +5,14 @@ class ThemesController < ApplicationController
 
   # GET /themes or /themes.json
   def index
-    @themes = Theme.all
+    @themes = Theme.root
   end
 
   # GET /themes/1 or /themes/1.json
   def show
-    add_breadcrumb @theme
+    @theme.ancestors_and_self.each do |t|
+      add_breadcrumb t, t
+    end
   end
 
   def toggle

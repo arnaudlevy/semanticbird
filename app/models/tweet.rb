@@ -4,6 +4,8 @@ class Tweet < ApplicationRecord
 
   after_save :link_to_themes
 
+  default_scope { order(created_at: :desc)}
+
   def create_from_object(object)
     self.text = object.text
     self.url = object.uri

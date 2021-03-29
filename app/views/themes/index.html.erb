@@ -1,25 +1,20 @@
 <h1>Themes</h1>
 
+<%= link_to 'New Theme', new_theme_path, class: button_classes %>
+
 <table class="table">
   <thead>
     <tr>
       <th>Name</th>
-      <th>Parent</th>
       <th>Tweets</th>
     </tr>
   </thead>
-
   <tbody>
     <% @themes.each do |theme| %>
       <tr>
         <td><%= link_to theme, theme %></td>
-        <td><%= link_to theme.parent, theme.parent if theme.parent %></td>
         <td><%= theme.tweets.count %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Theme', new_theme_path, class: button_classes %>

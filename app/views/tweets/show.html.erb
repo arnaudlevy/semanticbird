@@ -30,17 +30,14 @@
   <blockquote class="blockquote">{{ tweet.text }}</blockquote>
   <a ng-href="{{ tweet.url }}" class="btn btn-primary btn-sm" target="_blank" rel="noreferrer">See on twitter</a>
 
-  <hr>
-
-  <h2>Themes</h2>
+  <h2 class="mt-5">Themes</h2>
   <div class="themes">
     <span class="themes__theme" ng-repeat="theme in tweet.themes">
       {{ theme.name }}
     </span>
   </div>
 
-  <hr>
-  <h2>Lexem analysis</h2>
+  <h2 class="mt-5">Lexem analysis</h2>
   <div class="row">
     <div class="col-md-8">
       <h3>Lexems</h3>
