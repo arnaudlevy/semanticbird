@@ -1,18 +1,12 @@
 <p><%= link_to @tweet.account, @tweet.account %></p>
 
-<blockquote class="blockquote">
-  <%= @tweet.text %>
-</blockquote>
-
-<%= link_to 'See on twitter', @tweet.url, target: :_blank, class: 'btn btn-primary btn-sm' %>
-
 <script type="text/javascript">
   var app = angular.module('Lexems', []);
   app.controller('LexemsController', function LexemsController($scope, $http) {
     $scope.load = function () {
-      $http.get('<%= tweet_path(format: :json) %>')
+      $http.get('<%= tweet_path(@tweet, format: :json) %>')
         .then(function (event) {
-          $scope.lexems = event.data.lexems;
+          $scope.tweet = event.data;
         });
     }
     $scope.load();
@@ -24,19 +18,34 @@
       $scope.lexemSelected = lexem;
     }
     $scope.toggle = function (theme) {
-      $http.post('/themes/' + theme.id + '/toggle', { lexem: $scope.lexemSelected.value } )
+      $http.post('/themes/' + theme.id + '/toggle', { lexem: $scope.lexemSelected.value, tweet: $scope.tweet.id } )
         .then(function (event) {
-          $scope.load();
+          $scope.tweet = event.data;
         })
     }
   });
 </script>
 
 <div class="lexems mt-5" ng-app="Lexems" ng-controller="LexemsController">
+  <blockquote class="blockquote">{{ tweet.text }}</blockquote>
+  <a ng-href="{{ tweet.url }}" class="btn btn-primary btn-sm" target="_blank" rel="noreferrer">See on twitter</a>
+
+  <hr>
+
+  <h2>Themes</h2>
+  <div class="themes">
+    <span class="themes__theme" ng-repeat="theme in tweet.themes">
+      {{ theme.name }}
+    </span>
+  </div>
+
+  <hr>
+  <h2>Lexem analysis</h2>
   <div class="row">
     <div class="col-md-8">
+      <h3>Lexems</h3>
       <div  class="lexems__lexem align-top"
-            ng-repeat="lexem in lexems track by $index"
+            ng-repeat="lexem in tweet.lexems track by $index"
             ng-click="select(lexem)"
             ng-class="{
               'lexems__lexem--selected': lexem.index === lexemSelected.index,
@@ -53,10 +62,12 @@
     </div>
     <div class="col-md-4">
       <div ng-show="lexemSelected">
+        <h3>Themes</h3>
         <div class="themes">
           <span  class="themes__theme btn btn-secondary btn-sm me-2 mb-2"
                 ng-repeat="theme in themes"
                 ng-click="toggle(theme)">
+            <span ng-show="theme.parent">{{ theme.parent }} /</span>
             {{ theme.name }}
           </span>
         </div>

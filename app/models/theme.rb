@@ -1,6 +1,7 @@
 class Theme < ApplicationRecord
   belongs_to :parent, class_name: 'Theme', optional: true, inverse_of: :children
   has_many :children, class_name: 'Theme', foreign_key: :parent_id, inverse_of: :parent
+  has_and_belongs_to_many :tweets
 
   scope :with_lexem, -> (lexem) { where('lexems like ?', "%|#{lexem.value}|%") }
 
@@ -30,7 +31,7 @@ class Theme < ApplicationRecord
   end
 
   def lexems_array
-    @lexems_array ||= lexems.split '|'
+    @lexems_array ||= lexems.to_s.split '|'
   end
 
   def write_lexems

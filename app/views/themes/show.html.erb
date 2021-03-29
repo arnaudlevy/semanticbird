@@ -10,5 +10,23 @@
   <%= @theme.color %>
 </p>
 
-<%= link_to 'Edit', edit_theme_path(@theme) %> |
-<%= link_to 'Back', themes_path %>
+<%= link_to 'Edit', edit_theme_path(@theme) %>
+
+<h2>Tweets</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Account</th>
+      <th>Text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @theme.tweets.each do |tweet| %>
+      <tr>
+        <td><%= link_to tweet.account, tweet.account %></td>
+        <td><%= link_to tweet.text, tweet %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

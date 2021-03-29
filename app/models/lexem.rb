@@ -1,15 +1,20 @@
 class Lexem
   def self.list(text)
+    # Link at the end
     clean_text = text.split('https://').first
+    # Punctuation
     clean_text.gsub! ',', ' '
     clean_text.gsub! '/', ' '
     clean_text.gsub! '|', ' '
     clean_text.gsub! '.', ' '
     clean_text.gsub! '!', ' '
-    clean_text.gsub! '?', ' '
-    clean_text.gsub! 'RT', ' '
-    clean_text.gsub! ' €', '€'
     clean_text.gsub! ':', ' '
+    clean_text.gsub! '?', ' '
+    # Mentions
+    clean_text.gsub! 'RT', ' '
+    # Space before
+    clean_text.gsub! ' %', '%'
+    clean_text.gsub! ' €', '€'
     clean_text.gsub! ' | ', ' '
     clean_text.gsub! '  ', ' '
     list = []
@@ -25,5 +30,9 @@ class Lexem
   def initialize(value, index)
     @value = value
     @index = index
+  end
+
+  def themes
+    Theme.with_lexem self
   end
 end

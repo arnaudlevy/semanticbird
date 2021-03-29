@@ -23,6 +23,11 @@
         </ul>
       </header>
       <main>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <%= render_breadcrumbs builder: BreadcrumbBuilder %>
+          </ol>
+        </nav>
         <% if notice %>
           <p id="notice"><%= notice %></p>
         <% end %>

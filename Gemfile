@@ -15,6 +15,7 @@ gem 'angular_rails_csrf'
 gem 'country_select'
 gem 'twitter'
 gem 'figaro'
+gem 'breadcrumbs_on_rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

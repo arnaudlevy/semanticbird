@@ -1,6 +1,8 @@
 class ThemesController < ApplicationController
   before_action :set_theme, only: %i[ show toggle edit update destroy ]
 
+  add_breadcrumb 'Themes', :themes_path
+
   # GET /themes or /themes.json
   def index
     @themes = Theme.all
@@ -8,11 +10,15 @@ class ThemesController < ApplicationController
 
   # GET /themes/1 or /themes/1.json
   def show
+    add_breadcrumb @theme
   end
 
   def toggle
     @lexem = params[:lexem]
     @theme.toggle @lexem
+    @tweet = Tweet.find params[:tweet]
+    @tweet.save
+    render 'tweets/show.json'
   end
 
   # GET /themes/new

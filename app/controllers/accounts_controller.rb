@@ -1,6 +1,8 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: %i[ show edit update destroy ]
 
+  add_breadcrumb 'Accounts', :accounts_path
+
   # GET /accounts or /accounts.json
   def index
     @accounts = Account.all
@@ -9,6 +11,7 @@ class AccountsController < ApplicationController
   # GET /accounts/1 or /accounts/1.json
   def show
     @account.get_recent_tweets!
+    add_breadcrumb @account
   end
 
   # GET /accounts/new
