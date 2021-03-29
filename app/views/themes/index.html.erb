@@ -1,6 +1,6 @@
 <%= line_chart @themes.map { |theme|
     {name: theme.name, data: theme.tweets.group_by_day(:created_at, last: 30).count}
-} %>
+}, legend: :bottom %>
 
 <h1>Themes</h1>
 
