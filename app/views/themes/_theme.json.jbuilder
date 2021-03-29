@@ -1,2 +1,2 @@
 json.extract! theme, :id, :name, :color
-json.parent theme.parent&.name
+json.children theme.children, partial: "themes/theme", as: :theme if theme.children.any?

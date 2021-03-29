@@ -14,8 +14,12 @@ class Tweet < ApplicationRecord
     self.save
   end
 
+  def clean_text
+    CGI.unescapeHTML text
+  end
+
   def lexems
-    Lexem.list text
+    Lexem.list clean_text
   end
 
   def to_s
