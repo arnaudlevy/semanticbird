@@ -4,7 +4,7 @@ class Theme < ApplicationRecord
   has_and_belongs_to_many :tweets
 
   scope :root, -> { where(parent: nil) }
-  scope :with_lexem, -> (lexem) { where('lexems like ?', "%|#{lexem.value}|%") }
+  scope :with_lexem, -> (lexem) { where('lexems ilike ?', "%|#{lexem.value}|%") }
   default_scope { order(:name)}
 
   def toggle(lexem)

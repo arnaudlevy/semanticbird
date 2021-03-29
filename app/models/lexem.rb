@@ -17,6 +17,7 @@ class Lexem
     clean_text.gsub! ' €', '€'
     clean_text.gsub! ' | ', ' '
     clean_text.gsub! '  ', ' '
+    clean_text.downcase!
     list = []
     clean_text.split(' ').each_with_index do |l, index|
       lexem = Lexem.new l, index
