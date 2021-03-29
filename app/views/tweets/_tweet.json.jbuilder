@@ -5,6 +5,7 @@ json.lexems tweet.lexems do |lexem|
   json.themes Theme.with_lexem(lexem) do |theme|
     json.id theme.id
     json.name theme.name
+    json.color theme.color
   end
 end
 json.url tweet_url(tweet, format: :json)

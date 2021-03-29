@@ -2,6 +2,8 @@ class Lexem
   def self.list(text)
     clean_text = text.split('https://').first
     clean_text.gsub! ',', ' '
+    clean_text.gsub! '/', ' '
+    clean_text.gsub! '|', ' '
     clean_text.gsub! '.', ' '
     clean_text.gsub! '!', ' '
     clean_text.gsub! '?', ' '

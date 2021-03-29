@@ -2,14 +2,39 @@ class Theme < ApplicationRecord
   belongs_to :parent, class_name: 'Theme', optional: true, inverse_of: :children
   has_many :children, class_name: 'Theme', foreign_key: :parent_id, inverse_of: :parent
 
-  scope :with_lexem, -> (lexem) { where('lexems like ?', "%#{lexem.value}%") }
+  scope :with_lexem, -> (lexem) { where('lexems like ?', "%|#{lexem.value}|%") }
 
   def toggle(lexem)
-    self.lexems = lexem
-    self.save
+    contains?(lexem)  ? remove!(lexem)
+                      : add!(lexem)
   end
 
   def to_s
     "#{name}"
+  end
+
+  protected
+
+  def contains?(lexem)
+    lexem.in? lexems_array
+  end
+
+  def add!(lexem)
+    lexems_array << lexem
+    write_lexems
+  end
+
+  def remove!(lexem)
+    lexems_array.delete lexem
+    write_lexems
+  end
+
+  def lexems_array
+    @lexems_array ||= lexems.split '|'
+  end
+
+  def write_lexems
+    self.lexems = "|#{lexems_array.join '|'}|"
+    self.save
   end
 end

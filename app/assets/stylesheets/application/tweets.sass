@@ -2,11 +2,14 @@
   &__lexem
     position: relative
     display: inline-block
-    border: 1px solid #EEEEEE
+    border: 1px solid #999999
     padding: 10px 30px 10px 20px
     font-size: 25px
     margin: 0 10px 10px 0
-    opacity: 0.5
+    opacity: 0.3
+    min-height: 100px
+    &--with-themes
+      opacity: 1
     &--selected
       opacity: 1
       background: black
@@ -19,10 +22,10 @@
 .lexem
   &__themes
     &__theme
+      display: table
       font-size: 12px
-      background: #CCCCCC
-      color: black
-      display: inline-block
+      background: #6c757d
+      color: white
       padding: 2px 5px
       border-radius: 3px
-      margin: 0 10px 10px 0
+      margin-bottom: 5px
