@@ -1,0 +1,21 @@
+<div class="row mt-4">
+  <% tweets.each do |tweet| %>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header">
+          <%= link_to tweet.account, tweet.account %>
+        </div>
+        <div class="card-body">
+          <p><%= tweet %></p>
+          <div class="small text-muted">
+            <%= l tweet.created_at, format: :long %>
+          </div>
+        </div>
+        <div class="card-footer">
+          <%= link_to 'Analyze', tweet, class: 'btn btn-primary btn-sm' %>
+          <%= link_to 'See on twitter', tweet.url, target: :_blank, class: 'btn btn-primary btn-sm' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

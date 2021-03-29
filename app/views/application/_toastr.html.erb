@@ -1,0 +1,16 @@
+<% unless notice.nil? %>
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 5">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-body">
+        <%= notice %>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+      var toastList = toastElList.map(function (toastEl) {
+        var toast = new bootstrap.Toast(toastEl);
+        toast.show();
+      })
+    </script>
+  </div>
+<% end %>
