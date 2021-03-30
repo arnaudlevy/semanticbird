@@ -2,4 +2,4 @@
 
 <%= line_chart Tweet.group_by_week(:created_at, last: 10).count, legend: false %>
 
-<%= render 'list', tweets: @tweets %>
+<%= render 'list', tweets: @tweets_paged %>

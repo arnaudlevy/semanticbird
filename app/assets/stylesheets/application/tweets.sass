@@ -1,10 +1,15 @@
+.tweet
+  background: white
+  border: none
+  .card-footer
+    background: #EEEEEE
+
 .lexems
   &__lexem
     position: relative
     display: inline-block
     border: 1px solid #999999
     padding: 10px 30px 10px 20px
-    font-size: 25px
     margin: 0 10px 10px 0
     opacity: 0.3
     min-height: 90px
@@ -13,19 +18,12 @@
     &--selected
       opacity: 1
       background: black
+      border-color: black
       color: white
     &__index
       position: absolute
       font-size: 10px
       top: 0px
       right: 3px
-.lexem
-  &__themes
-    &__theme
-      display: table
-      font-size: 12px
-      background: #6c757d
-      color: white
-      padding: 2px 5px
-      border-radius: 10px
-      margin-bottom: 5px
+    &__value
+      font-size: 25px

@@ -2,8 +2,10 @@
 
 <p><%= @account.country %></p>
 
+<%= line_chart @account.tweets.group_by_week(:created_at, last: 10).count, legend: false %>
+
 <%= link_to 'See on twitter', @account.url, class: button_classes, target: :_blank %>
 <%= link_to 'Edit', edit_account_path(@account), class: button_classes %>
 <%= link_to 'Sync', sync_account_path(@account), method: :post, class: button_classes %>
 
-<%= render 'tweets/list', tweets: @tweets %>
+<%= render 'tweets/list', tweets: @tweets_paged %>

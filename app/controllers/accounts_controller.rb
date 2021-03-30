@@ -11,6 +11,7 @@ class AccountsController < ApplicationController
   # GET /accounts/1 or /accounts/1.json
   def show
     @tweets = @account.tweets.ordered
+    @tweets_paged = @tweets.page params[:page]
     add_breadcrumb @account
   end
 

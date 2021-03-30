@@ -5,7 +5,8 @@ class TweetsController < ApplicationController
 
   # GET /tweets or /tweets.json
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.ordered
+    @tweets_paged = @tweets.page params[:page]
   end
 
   # GET /tweets/1 or /tweets/1.json

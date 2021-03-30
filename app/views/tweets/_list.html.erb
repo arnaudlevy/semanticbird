@@ -1,24 +1,27 @@
 <div class="row mt-4">
   <% tweets.each do |tweet| %>
     <div class="col-md-4">
-      <div class="card mb-3">
-        <div class="card-header">
-          <div class="small text-muted float-end">
-            <%= l tweet.created_at, format: :long %>
-          </div>
-          <%= link_to tweet.account, tweet.account %>
-        </div>
+      <div class="card mb-4 tweet">
         <div class="card-body">
-          <p><%= tweet %></p>
-          <% tweet.themes.each do |theme| %>
-            <%= link_to theme, theme, class: 'theme' %>
-          <% end %>
+          <p class="mb-1"><%= tweet %></p>
+          <div>
+            <%= link_to 'Analyze this tweet', tweet, class: 'small me-3' %>
+            <%= link_to 'See on Twitter', tweet.url, target: :_blank, class: 'small' %>
+          </div>
+          <div class="tweet__themes mt-2">
+            <% tweet.themes.each do |theme| %>
+              <%= link_to theme, theme, class: 'theme' %>
+            <% end %>
+          </div>
         </div>
         <div class="card-footer">
-          <%= link_to 'Analyze', tweet, class: 'btn btn-primary btn-sm' %>
-          <%= link_to 'See on twitter', tweet.url, target: :_blank, class: 'btn btn-primary btn-sm' %>
+          <span class="small text-muted float-end">
+            <%= l tweet.created_at, format: :short %>
+          </span>
+          <p class="mb-1"><%= link_to tweet.account, tweet.account %>, <%= tweet.account.country %></p>
         </div>
       </div>
     </div>
   <% end %>
 </div>
+<%= paginate tweets %>

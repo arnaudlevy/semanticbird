@@ -27,5 +27,5 @@
 
 <% if @theme.tweets.any? %>
   <h2 class="mt-5">Tweets</h2>
-  <%= render 'tweets/list', tweets: @tweets %>
+  <%= render 'tweets/list', tweets: @tweets_paged %>
 <% end %>

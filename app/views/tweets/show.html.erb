@@ -5,7 +5,7 @@
     return {
       restrict: 'E',
       scope: {
-        themesAtLevel: '=themes',
+        themes: '=',
         controller: '='
       },
       templateUrl: 'theme-selector.html'
@@ -13,40 +13,47 @@
   });
 
   app.controller('LexemsController', function LexemsController($scope, $http) {
+    var self = this;
+
     $http.get('<%= tweet_path(@tweet, format: :json) %>')
       .then(function (event) {
         $scope.tweet = event.data;
       });
+
     $http.get('<%= themes_path(format: :json) %>')
       .then(function (event) {
         $scope.themes = event.data;
       })
+
     $scope.select = function (lexem) {
       $scope.lexemSelected = lexem;
     };
+
+    this.isThemeSelected = function (theme) {
+      if (!$scope.lexemSelected) {
+        return false;
+      }
+      var found = false;
+      angular.forEach($scope.lexemSelected.themes, function(value, key) {
+        if (theme.id === value.id) {
+          found = true;
+        }
+      });
+      return found;
+    };
+
     this.toggle = function (theme) {
       $http.post('/themes/' + theme.id + '/toggle', {
         lexem: $scope.lexemSelected.value,
         tweet: $scope.tweet.id
       } ).then(function (event) {
         $scope.tweet = event.data;
+        $scope.lexemSelected = $scope.tweet.lexems[$scope.lexemSelected.index]
       })
-    };
-    this.isThemeSelected = function (theme) {
-      var found = false;
-      if ($scope.lexemSelected) {
-        angular.forEach($scope.lexemSelected.themes, function(value, key) {
-          if (theme.id === value.id) {
-            found = true;
-          }
-        });
-      }
-      return found;
     };
   });
 
 </script>
-
 
 <div class="lexems mt-5" ng-app="Lexems" ng-controller="LexemsController as lexemsController" ng-cloak>
   <div class="row">
@@ -57,19 +64,16 @@
     </div>
     <div class="col-md-4">
       <div class="themes">
-        <div ng-repeat="theme in tweet.themes" class="mb-2">
-          <span class="themes__theme btn btn-secondary">
-            {{ theme.name }}
-          </span>
-        </div>
+        <span ng-repeat="theme in tweet.themes" class="theme">
+          {{ theme.name }}
+        </span>
       </div>
     </div>
   </div>
 
-  <h2 class="mt-5">Lexem analysis</h2>
+  <h2>Teach the bird how to recognize the themes</h2>
   <div class="row">
     <div class="col-md-8">
-      <h3>Lexems</h3>
       <div  class="lexems__lexem align-top"
             ng-repeat="lexem in tweet.lexems track by lexem.index"
             ng-click="select(lexem)"
@@ -80,7 +84,7 @@
         <span class="lexems__lexem__index">{{ lexem.index }}</span>
         <span class="lexems__lexem__value">{{ lexem.value }}</span>
         <div class="lexems__lexem__themes">
-          <div class="lexem__themes__theme" ng-repeat="theme in lexem.themes">
+          <div class="theme theme--small" ng-repeat="theme in lexem.themes">
             {{ theme.name }}
           </div>
         </div>
@@ -88,10 +92,9 @@
     </div>
     <div class="col-md-4">
       <script type="text/ng-template" id="theme-selector.html">
-        <div  class="themes__theme"
-              ng-repeat="theme in themesAtLevel track by theme.id">
-          <span class="themes__theme__name btn btn-sm mb-2"
-                ng-class="controller.isThemeSelected(theme) ? 'btn-secondary' : 'btn-light'"
+        <div ng-repeat="theme in themes track by theme.id">
+          <span class="theme"
+                ng-class="{ 'theme--unselected': !controller.isThemeSelected(theme) }"
                 ng-click="controller.toggle(theme)">
             {{ theme.name }}
           </span>
@@ -100,7 +103,7 @@
           </div>
       </script>
       <div ng-show="lexemSelected">
-        <h3>Themes</h3>
+        <p>Select the themes in “{{ lexemSelected.value }}”</p>
         <theme-selector themes="themes" controller="lexemsController"></theme-selector>
       </div>
     </div>

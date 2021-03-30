@@ -19,6 +19,7 @@ gem 'breadcrumbs_on_rails'
 gem 'jquery-rails'
 gem 'chartkick'
 gem 'groupdate'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
