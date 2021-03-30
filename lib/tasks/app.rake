@@ -14,4 +14,9 @@ namespace :app do
       sh 'rails db:migrate'
     end
   end
+
+  desc 'Synchronize accounts from twitter'
+  task sync: :environment do
+    Account.find_each &:get_recent_tweets!
+  end
 end
