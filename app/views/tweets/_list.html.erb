@@ -10,13 +10,9 @@
         </div>
         <div class="card-body">
           <p><%= tweet %></p>
-          <ul class="list-inline">
-            <% tweet.themes.each do |theme| %>
-            <li class="list-inline-item">
-              <%= link_to theme, theme, class: 'btn btn-secondary btn-sm mb-3' %>
-            </li>
-            <% end %>
-          </ul>
+          <% tweet.themes.each do |theme| %>
+            <%= link_to theme, theme, class: 'theme' %>
+          <% end %>
         </div>
         <div class="card-footer">
           <%= link_to 'Analyze', tweet, class: 'btn btn-primary btn-sm' %>

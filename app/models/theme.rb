@@ -12,6 +12,10 @@ class Theme < ApplicationRecord
                       : add!(lexem)
   end
 
+  def lexems_array
+    @lexems_array ||= lexems.to_s.split('|').reject(&:blank?)
+  end
+
   def ancestors_and_self
     list = [self]
     list = parent.ancestors_and_self.concat list if parent
@@ -38,12 +42,8 @@ class Theme < ApplicationRecord
     write_lexems
   end
 
-  def lexems_array
-    @lexems_array ||= lexems.to_s.split '|'
-  end
-
   def write_lexems
-    self.lexems = "|#{lexems_array.join '|'}|"
+    self.lexems = "|#{lexems_array.reject(&:blank?).compact.sort.join('|')}|"
     self.save
   end
 end

@@ -1,10 +1,8 @@
 <h1><%= @account %></h1>
 
-<p>
-  <strong>Country:</strong>
-  <%= @account.country %>
-</p>
+<p><%= @account.country %></p>
 
+<%= link_to 'See on twitter', @account.url, class: button_classes, target: :_blank %>
 <%= link_to 'Edit', edit_account_path(@account), class: button_classes %>
 <%= link_to 'Sync', sync_account_path(@account), method: :post, class: button_classes %>
 

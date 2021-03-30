@@ -1,0 +1,39 @@
+.breadcrumb
+  font-size: 12px
+
+h1
+  margin-top: 3*$grid-gutter-width
+  margin-bottom: 4*$grid-gutter-width
+  text-align: center
+  + p
+    margin-top: -3*$grid-gutter-width
+    margin-bottom: 3*$grid-gutter-width
+    text-align: center
+
+header
+  ul
+    li
+      text-transform: uppercase
+      font-size: 14px
+      letter-spacing: 2px
+
+a
+  transition: text-decoration 0.5s
+  text-decoration-thickness: 1px
+  text-decoration-color: rgba(125, 125, 125, 0.5)
+  text-underline-offset: 3px
+  &:hover
+    text-decoration-color: black
+  &[target="_blank"]
+    &::after
+      content: ""
+      width: 0.8rem
+      height: 0.8rem
+      margin: 0 0.05rem 0 0.1rem
+      background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ij48cGF0aCBkPSJNOSAyTDkgMyAxMi4zIDMgNiA5LjMgNi43IDEwIDEzIDMuNyAxMyA3IDE0IDcgMTQgMlpNNCA0QzIuOSA0IDIgNC45IDIgNkwyIDEyQzIgMTMuMSAyLjkgMTQgNCAxNEwxMCAxNEMxMS4xIDE0IDEyIDEzLjEgMTIgMTJMMTIgNyAxMSA4IDExIDEyQzExIDEyLjYgMTAuNiAxMyAxMCAxM0w0IDEzQzMuNCAxMyAzIDEyLjYgMyAxMkwzIDZDMyA1LjQgMy40IDUgNCA1TDggNSA5IDRaIi8+PC9zdmc+) no-repeat
+      background-size: contain
+      display: inline-block
+      vertical-align: -0.1rem
+    &.btn-primary
+      &::after
+        filter: invert(1)

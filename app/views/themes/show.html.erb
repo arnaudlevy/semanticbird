@@ -1,6 +1,7 @@
-<%= line_chart @theme.tweets.group_by_week(:created_at, last: 10).count, legend: false %>
-
 <h1><%= @theme %></h1>
+<p class="small text-muted"><%= @theme.lexems_array.join ', ' %></p>
+
+<%= line_chart @theme.tweets.group_by_week(:created_at, last: 10).count, legend: false %>
 
 <%= link_to 'Edit', edit_theme_path(@theme), class: button_classes %>
 

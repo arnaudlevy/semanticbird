@@ -2,7 +2,7 @@ class Account < ApplicationRecord
   has_many :tweets
 
   def url
-    "https://twitter.com/#{identifier}"
+    "https://twitter.com/#{username}"
   end
 
   def get_recent_tweets!

@@ -1,8 +1,8 @@
+<h1>Themes</h1>
+
 <%= line_chart @themes.map { |theme|
     {name: theme.name, data: theme.tweets.group_by_week(:created_at, last: 10).count}
 }, legend: :bottom %>
-
-<h1>Themes</h1>
 
 <%= link_to 'New Theme', new_theme_path, class: button_classes %>
 
