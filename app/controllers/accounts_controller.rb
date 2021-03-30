@@ -10,6 +10,7 @@ class AccountsController < ApplicationController
 
   # GET /accounts/1 or /accounts/1.json
   def show
+    @tweets = @account.tweets.ordered
     add_breadcrumb @account
   end
 

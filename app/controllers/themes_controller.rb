@@ -10,6 +10,7 @@ class ThemesController < ApplicationController
 
   # GET /themes/1 or /themes/1.json
   def show
+    @tweets = @theme.tweets.ordered
     @theme.ancestors_and_self.each do |t|
       add_breadcrumb t, t
     end
