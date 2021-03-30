@@ -1,5 +1,5 @@
 class Account < ApplicationRecord
-  has_many :tweets
+  has_many :tweets, dependent: :destroy
 
   def url
     "https://twitter.com/#{username}"

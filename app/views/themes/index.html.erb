@@ -6,21 +6,6 @@
     {name: theme.name, data: theme.tweets.group_by_week(:created_at, last: 10, current: false).count}
 }, legend: :bottom %>
 
-<%= link_to 'New Theme', new_theme_path, class: button_classes %>
+<%= render 'list', themes: @themes %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Tweets</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @themes.each do |theme| %>
-      <tr>
-        <td><%= link_to theme, theme %></td>
-        <td><%= theme.tweets.count %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= link_to 'New Theme', new_theme_path, class: button_classes %>

@@ -1,0 +1,12 @@
+<div class="row mt-4">
+  <% themes.each do |theme| %>
+    <div class="col-md-3">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h3><%= link_to theme, theme, class: 'stretched-link' %></h3>
+          <p class="display-4 text-end mb-0"><%= theme.tweets.count %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

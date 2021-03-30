@@ -23,6 +23,7 @@ class AccountsController < ApplicationController
   # GET /accounts/new
   def new
     @account = Account.new
+    add_breadcrumb 'New'
   end
 
   # GET /accounts/1/edit

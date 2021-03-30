@@ -9,23 +9,7 @@
 <%= link_to 'Edit', edit_theme_path(@theme), class: button_classes %>
 
 <% if @theme.children.any? %>
-  <h2 class="mt-5">Child themes</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Tweets</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @theme.children.each do |theme| %>
-        <tr>
-          <td><%= link_to theme, theme %></td>
-          <td><%= theme.tweets.count %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render 'list', themes: @theme.children %>
 <% end %>
 
 <% if @theme.tweets.any? %>
