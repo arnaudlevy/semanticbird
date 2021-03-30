@@ -5,7 +5,7 @@ class ThemesController < ApplicationController
 
   # GET /themes or /themes.json
   def index
-    @themes = Theme.root
+    @themes = Theme.root.ordered
   end
 
   # GET /themes/1 or /themes/1.json

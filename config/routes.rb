@@ -10,5 +10,5 @@ Rails.application.routes.draw do
       post :sync
     end
   end
-  root to: 'accounts#index'
+  root to: 'application#index'
 end

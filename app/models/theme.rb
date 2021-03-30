@@ -5,7 +5,7 @@ class Theme < ApplicationRecord
 
   scope :root, -> { where(parent: nil) }
   scope :with_lexem, -> (lexem) { where('lexems ilike ?', "%|#{lexem.value}|%") }
-  default_scope { order(:name)}
+  scope :ordered, -> { order(:name)}
 
   def toggle(lexem)
     contains?(lexem)  ? remove!(lexem)

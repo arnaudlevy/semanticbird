@@ -1,0 +1,36 @@
+<%= area_chart Theme.ordered.map { |theme|
+    {
+      name: theme.name,
+      data: theme.tweets.group_by_day(:created_at, last: 7, current: false).count
+    }
+  },
+  points: false,
+  legend: false,
+  discrete: true,
+  library: {
+
+    scales: {
+      xAxes: [
+        {
+          display: false,
+          gridLines: {
+            display: false
+          }
+        }
+      ],
+      yAxes: [
+        {
+          display: false,
+          gridLines: {
+            display: false
+          }
+        }
+      ]
+    }
+  } %>
+
+<div class="row mt-5">
+  <div class="offset-md-3 col-md-6">
+    <p class="lead text-center">Semantic Bird is a twitter thematic analyzer you can teach, just like you would teach a bird, one word at a time. Everytime you add a word to a theme, the bird learns it and will use it for the rest of its life.</p>
+  </div>
+</div>
