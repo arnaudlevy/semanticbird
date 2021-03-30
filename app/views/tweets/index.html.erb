@@ -1,5 +1,5 @@
 <h1>Tweets</h1>
 
-<%= line_chart Tweet.group_by_week(:created_at, last: 10).count, legend: false %>
+<%= line_chart Tweet.group_by_week(:created_at, last: 10, current: false).count, legend: false %>
 
 <%= render 'list', tweets: @tweets_paged %>
